@@ -1,20 +1,18 @@
 <div id="<%= dom_id post %>" class="post-container">
 
   <div class="post-image-container">
-  <% if post.image.attached? %>
-    <% post.image.each do |image| %>
-      <%= image_tag(image, class: "post-image") %>
+    <% if post.image.attached? %>
+      <% post.image.each do |image| %>
+        <%= image_tag(image, class: "post-image") %>
+      <% end %>
+    <% else %>
+      <div class="placeholder">No Image Available</div>
     <% end %>
-  <% else %>
-    <div class="placeholder">No Image Available</div>
-  <% end %>
-</div>
+  </div>
 
-  <p>
   <p style="text-align: center; font-size: 20px;">
     <strong><%= post.event_name %></strong>
   </p>
-
 
   <p style="text-align: center; font-size: 10px; color: grey;">
      <%= post.genre %>
@@ -25,25 +23,24 @@
   </p>
 
   <div class="date-overlay">
-    <span class="day"><%= Date.parse(post.event_date).strftime('%a') %></span>
-    <span class="date"><%= Date.parse(post.event_date).strftime('%d') %></span>
-    <span class="month"><%= Date.parse(post.event_date).strftime('%b') %></span>
+    <% if post.event_date.present? && Date.parse(post.event_date) rescue false %>
+      <span class="day"><%= Date.parse(post.event_date).strftime('%a') %></span>
+      <span class="date"><%= Date.parse(post.event_date).strftime('%d') %></span>
+      <span class="month"><%= Date.parse(post.event_date).strftime('%b') %></span>
+    <% else %>
+      <span class="day">Invalid date</span>
+    <% end %>
   </div>
 
   <p style="text-align: center; font-size: 10px; color: grey;">
     <strong>Suggested donation:</strong> <%= post.suggested_donation %>
     <% if post.membership_required == "1" %>
-       + ($5 annual membership)
-  <% end %>
+      + ($5 annual membership)
+    <% end %>
   </p>
 
-
-
-
   <p>
-    <%= link_to "", post,  class:"post-link" %>
-
-
+    <%= link_to "", post, class:"post-link" %>
     <% if post.visibility == false %>
       <span style="color: red; font-size: 10px;">Event is not public</span>
     <% end %>
