@@ -17,7 +17,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create post" do
     assert_difference("Post.count") do
-      post posts_url, params: { post: { genre: @post.genre, Suggested_Donation: @post.Suggested_Donation, event_name: @post.event_name, event_date: @post.event_date, membership_required: @post.membership_required, time: @post.time } }
+      post posts_url, params: { post: { genre: @post.genre, suggested_donation: @post.suggested_donation, event_name: @post.event_name, event_date: @post.event_date, membership_required: @post.membership_required, time: @post.time } }
     end
 
     assert_redirected_to post_url(Post.last)
@@ -34,7 +34,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update post" do
-    patch post_url(@post), params: { post: { genre: @post.genre, Suggested_Donation: @post.Suggested_Donation, event_name: @post.event_name, event_date: @post.event_date, membership_required: @post.membership_required, time: @post.time } }
+    patch post_url(@post), params: { post: { genre: @post.genre, suggested_donation: @post.suggested_donation, event_name: @post.event_name, event_date: @post.event_date, membership_required: @post.membership_required, time: @post.time } }
     assert_redirected_to post_url(@post)
   end
 

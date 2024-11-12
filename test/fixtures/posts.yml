@@ -5,7 +5,7 @@ one:
   time: MyString
   event_date: MyString
   membership_required: MyString
-  Suggested_Donation: MyString
+  suggested_donation: MyString
   genre: MyString
 
 two:
@@ -13,5 +13,5 @@ two:
   time: MyString
   event_date: MyString
   membership_required: MyString
-  Suggested_Donation: MyString
+  suggested_donation: MyString
   genre: MyString
