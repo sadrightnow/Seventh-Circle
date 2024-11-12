@@ -18,7 +18,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
-gem 'hotwire-rails'
+gem "hotwire-rails"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -61,8 +61,8 @@ end
 
 gem "devise", "~> 4.9"
 
-gem "dockerfile-rails", ">= 1.6", :group => :development
+gem "dockerfile-rails", ">= 1.6", group: :development
 
 gem "pg", "~> 1.5"
 
-gem "aws-sdk-s3", "~> 1.170", :require => false
+gem "aws-sdk-s3", "~> 1.170", require: false

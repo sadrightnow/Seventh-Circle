@@ -1,7 +1,4 @@
 class BandsController < ApplicationController
-
-
-
   def index
     # Check if the 'local' filter is applied
     if params[:local] == "1"  # If the checkbox is checked
@@ -35,11 +32,11 @@ class BandsController < ApplicationController
   def create
     @band = Band.new(params[:id])
     @genres = load_genres
-    
+
 
     respond_to do |format|
       if @band.save
-        format.html { redirect_to @band, notice: 'Band was successfully created.' }
+        format.html { redirect_to @band, notice: "Band was successfully created." }
         format.json { render :show, status: :created, location: @band }
       else
         format.html { render :new }
@@ -53,7 +50,7 @@ class BandsController < ApplicationController
     respond_to do |format|
       @band = Band.find(params[:id])
       if @band.update(band_params)
-        format.html { redirect_to @band, notice: 'Band was successfully updated.' }
+        format.html { redirect_to @band, notice: "Band was successfully updated." }
         format.json { render :show, status: :ok, location: @band }
       else
         format.html { render :edit }
@@ -67,14 +64,14 @@ class BandsController < ApplicationController
     @band = Band.find(params[:id])
     @band.destroy
     respond_to do |format|
-      format.html { redirect_to bands_url, notice: 'Band was successfully destroyed.' }
+      format.html { redirect_to bands_url, notice: "Band was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
     def load_genres
-      genres_file = Rails.root.join('config', 'genres.json')
+      genres_file = Rails.root.join("config", "genres.json")
       JSON.parse(File.read(genres_file))["genres"]
     end
 
@@ -82,9 +79,8 @@ class BandsController < ApplicationController
       @band = Band.find(params[:id])
     end
 
-    
+
     def band_params
       params.require(:band).permit(:band_name, :genre, :band_description, :band_bandcamp_link, :band_instagram_link, :band_email, :band_location, :band_ffo, :profile_picture)
     end
-
-    end
+end

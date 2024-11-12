@@ -1,15 +1,15 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
-  before_action :authenticate_user_l!, except: [:index, :show]
+  before_action :authenticate_user_l!, except: [ :index, :show ]
 
   # GET /posts or /posts.json
   def index
     if user_l_signed_in?
       # Show all posts with future dates to logged-in users
-      @posts = Post.where('event_date >= ?', Date.today).order('event_date')
+      @posts = Post.where("event_date >= ?", Date.today).order("event_date")
     else
       # Show only visible posts with future dates to guests
-      @posts = Post.where(visibility: true).where('event_date >= ?', Date.today).order('event_date')
+      @posts = Post.where(visibility: true).where("event_date >= ?", Date.today).order("event_date")
     end
   end
 
@@ -79,13 +79,13 @@ class PostsController < ApplicationController
 
   # Load genres from a JSON file
   def load_genres
-    genres_file = Rails.root.join('config', 'genres.json')
+    genres_file = Rails.root.join("config", "genres.json")
     JSON.parse(File.read(genres_file))["genres"]
   end
 
   # Only allow a list of trusted parameters through.
   def post_params
-    genres = params[:post][:genre].reject(&:blank?).join(' / ')
+    genres = params[:post][:genre].reject(&:blank?).join(" / ")
     params[:post][:genre] = genres
     params.require(:post).permit(:event_name, :time, :event_date, :membership_required, :visibility, :suggested_donation, :genre, :image, :show_poster, band_ids: [])
   end

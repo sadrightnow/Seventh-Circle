@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   resources :bands
 
-  devise_scope :user_l do 
-    get '/user_ls', to: 'devise/registration#new'
-    get '/user_ls/password', to: 'devise/passwords#new'
-    get '/user_ls/sign_out' => "devise/sessions#destroy"
+  devise_scope :user_l do
+    get "/user_ls", to: "devise/registration#new"
+    get "/user_ls/password", to: "devise/passwords#new"
+    get "/user_ls/sign_out" => "devise/sessions#destroy"
   end
 
   devise_for :user_ls
@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   get "home/about"
   resources :posts
   get "home/contact"
-  resources :bands, only: [:show, :edit, :update]
-  
+  resources :bands, only: [ :show, :edit, :update ]
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -24,6 +24,6 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  # Defines the root path route ("/")
+   # Defines the root path route ("/")
    root "posts#index"
 end
