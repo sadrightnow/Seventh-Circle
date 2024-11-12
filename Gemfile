@@ -60,3 +60,9 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+
+gem "dockerfile-rails", ">= 1.6", :group => :development
+
+gem "pg", "~> 1.5"
+
+gem "aws-sdk-s3", "~> 1.170", :require => false
