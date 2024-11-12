@@ -15,7 +15,7 @@ class PostsTest < ApplicationSystemTestCase
     click_on "New post"
 
     fill_in "genre", with: @post.genre
-    fill_in "suggested donation", with: @post.Suggested_Donation
+    fill_in "suggested donation", with: @post.suggested_donation
     fill_in "event_name", with: @post.event_name
     fill_in "event_date", with: @post.event_date
     fill_in "Membership required", with: @post.membership_required
@@ -31,7 +31,7 @@ class PostsTest < ApplicationSystemTestCase
     click_on "Edit this post", match: :first
 
     fill_in "genre", with: @post.genre
-    fill_in "suggested donation", with: @post.Suggested_Donation
+    fill_in "suggested donation", with: @post.suggested_donation
     fill_in "event_name", with: @post.event_name
     fill_in "event_date", with: @post.date
     fill_in "Membership required", with: @post.membership_required
