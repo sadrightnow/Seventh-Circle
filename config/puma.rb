@@ -1,18 +1,11 @@
-# Set up Puma to use a configurable number of threads
-threads_count = ENV.fetch("RAILS_MAX_THREADS", 3).to_i
+workers ENV.fetch('WEB_CONCURRENCY') { 2 }
+threads_count = ENV.fetch('RAILS_MAX_THREADS') { 5 }
 threads threads_count, threads_count
 
-# Specifies the port that Puma will listen on to receive requests
-port ENV.fetch("PORT", 5000)
+preload_app!
 
-# Specifies the environment Puma will run in
+port        ENV.fetch("PORT") { 3000 }
 environment ENV.fetch("RAILS_ENV") { "development" }
 
-# Specifies the address Puma will bind to for Fly.io compatibility
-bind "tcp://0.0.0.0:#{ENV.fetch("PORT") { 5000 }}"
-
-# Allow Puma to be restarted by the `bin/rails restart` command.
+# Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
-
-# Specify the PID file for Puma (optional)
-pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
