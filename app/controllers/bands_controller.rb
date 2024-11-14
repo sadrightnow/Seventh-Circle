@@ -70,10 +70,7 @@ class BandsController < ApplicationController
   end
 
   private
-    def load_genres
-      genres_file = Rails.root.join("config", "genres.json")
-      JSON.parse(File.read(genres_file))["genres"]
-    end
+
 
     def set_band
       @band = Band.find(params[:id])

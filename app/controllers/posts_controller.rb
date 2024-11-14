@@ -16,12 +16,16 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    @genres = Genre.all
     @bands = @post.bands
+    
   end
 
   # GET /posts/new
   def new
+    @genres = Genre.all
     @post = Post.new
+
   end
 
   # GET /posts/1/edit
