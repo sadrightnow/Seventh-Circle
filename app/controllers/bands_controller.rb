@@ -18,20 +18,20 @@ class BandsController < ApplicationController
 
   # GET /bands/new
   def new
-    @genres = load_genres
+    @genres = Genre.all
     @band = Band.new
   end
 
   # GET /bands/1/edit
   def edit
     @band = Band.find(params[:id])
-    @genres = load_genres
+    @genres = Genre.all
   end
 
   # POST /bands or /bands.json
   def create
-    @band = Band.new(params[:id])
-    @genres = load_genres
+    @band = Band.new(band_params)
+    @genres = Genre.all
 
 
     respond_to do |format|
@@ -81,6 +81,5 @@ class BandsController < ApplicationController
 
 
     def band_params
-      params.require(:band).permit(:band_name, :genre, :band_description, :band_bandcamp_link, :band_instagram_link, :band_email, :band_location, :band_ffo, :profile_picture)
-    end
+    params.require(:band).permit(:band_name, :genre_id, :band_description, :band_bandcamp_link, :band_instagram_link, :band_email, :band_location, :band_ffo, :profile_picture)    end
 end

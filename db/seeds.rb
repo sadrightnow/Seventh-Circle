@@ -4,3 +4,15 @@
 #
 # Example:
 #
+# db/seeds.rb
+
+require 'json'
+
+# Read the genres from the JSON file
+file_path = Rails.root.join('config', 'genres.json')
+genres_data = JSON.parse(File.read(file_path))['genres']
+
+# Create genres in the database
+genres_data.each do |genre_name|
+  Genre.find_or_create_by(name: genre_name)
+end

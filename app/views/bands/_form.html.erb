@@ -16,10 +16,10 @@
     <%= form.text_field :band_name, class: "form-input" %>
   </div>
 
-  <!-- Genre -->
+  <!-- Genres Multi-Select Field with Slim Select -->
   <div class="form-group">
-    <%= form.label :genre, "Genre", class: "form-label" %>
-    <%= form.select :genre, options_for_select([*@genres], selected: @selectElement), { multiple: true }, { class: "form-select", id: "selectElement", genre: { controller: "slim-select" } } %>
+    <%= form.label :genres, "Genres", class: "form-label" %>
+    <%= form.select :genre_ids, options_for_select(@genres.collect { |genre| [genre.name, genre.id] }, selected: @band.genre_ids), { multiple: true }, { class: "form-select", id: "genre_select" } %>
   </div>
 
   <!-- Bandcamp Link -->

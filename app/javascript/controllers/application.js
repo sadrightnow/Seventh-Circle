@@ -7,6 +7,11 @@ document.addEventListener("DOMContentLoaded", function() {
     select: '#band_select', // The ID of your select element
     closeOnSelect: false // Optional: allows multiple selections
   });
+
+  new SlimSelect({
+    select: '#genre_select',
+    closeOnSelect: false // Optional: allows multiple selections
+  });
 });
 
 

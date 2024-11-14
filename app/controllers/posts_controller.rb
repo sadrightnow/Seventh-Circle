@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
-  before_action :authenticate_user_l!, except: [ :index, :show ]
+  before_action :set_genres_and_bands, only: [:new, :edit, :create]
+  before_action :authenticate_user_l!, except: [:index, :show]
 
   # GET /posts or /posts.json
   def index
@@ -15,26 +16,20 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
-    @post = Post.find(params[:id])
     @bands = @post.bands
   end
 
   # GET /posts/new
   def new
-    @genres = load_genres
-    @bands = Band.all # Fetch all bands for the form
     @post = Post.new
   end
 
   # GET /posts/1/edit
   def edit
-    @genres = load_genres
-    @bands = Band.all # Fetch all bands for the form
   end
 
   # POST /posts or /posts.json
   def create
-    @genres = load_genres
     @post = Post.new(post_params)
 
     respond_to do |format|
@@ -77,16 +72,25 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  # Load genres from a JSON file
-  def load_genres
-    genres_file = Rails.root.join("config", "genres.json")
-    JSON.parse(File.read(genres_file))["genres"]
+  # Load genres and bands for the form
+  def set_genres_and_bands
+    @genres = Genre.all
+    @bands = Band.all
   end
 
   # Only allow a list of trusted parameters through.
   def post_params
-    genres = params[:post][:genre].reject(&:blank?).join(" / ")
-    params[:post][:genre] = genres
-    params.require(:post).permit(:event_name, :time, :event_date, :membership_required, :visibility, :suggested_donation, :genre, :image, :show_poster, band_ids: [])
-  end
+    params.require(:post).permit(
+      :event_name, 
+      :time, 
+      :event_date, 
+      :membership_required, 
+      :visibility, 
+      :suggested_donation, 
+      { genre_ids: [] }, 
+      :image, 
+      :show_poster, 
+      { band_ids: [] }
+    )
+  end  
 end

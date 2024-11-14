@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_10_221430) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_14_000332) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -53,9 +53,29 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_10_221430) do
     t.boolean "local"
   end
 
+  create_table "bands_genres", id: false, force: :cascade do |t|
+    t.integer "band_id", null: false
+    t.integer "genre_id", null: false
+    t.index ["band_id"], name: "index_bands_genres_on_band_id"
+    t.index ["genre_id"], name: "index_bands_genres_on_genre_id"
+  end
+
   create_table "bands_posts", id: false, force: :cascade do |t|
     t.integer "post_id", null: false
     t.integer "band_id", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres_posts", id: false, force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "genre_id", null: false
+    t.index ["genre_id"], name: "index_genres_posts_on_genre_id"
+    t.index ["post_id"], name: "index_genres_posts_on_post_id"
   end
 
   create_table "installs", force: :cascade do |t|
@@ -76,7 +96,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_10_221430) do
     t.string "event_date"
     t.string "membership_required"
     t.string "suggested_donation"
-    t.string "genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "visibility"
@@ -97,4 +116,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_10_221430) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bands_genres", "bands"
+  add_foreign_key "bands_genres", "genres"
+  add_foreign_key "genres_posts", "genres"
+  add_foreign_key "genres_posts", "posts"
 end
