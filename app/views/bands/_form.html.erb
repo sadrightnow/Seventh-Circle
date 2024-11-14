@@ -22,6 +22,9 @@
     <%= form.select :genre_ids, options_for_select(@genres.collect { |genre| [genre.name, genre.id] }, selected: @band.genre_ids), { multiple: true }, { class: "form-select", id: "genre_select" } %>
   </div>
 
+  
+
+
   <!-- Bandcamp Link -->
   <div class="form-group">
     <%= form.label :band_bandcamp_link, class: "form-label" %>
@@ -33,7 +36,7 @@
     <%= form.label :local, "Is the band local?", class: "form-label" %>
     <%= form.check_box :local, class: "form-checkbox" %>
   </div>
-  
+
   <!-- Instagram Link -->
   <div class="form-group">
     <%= form.label :band_instagram_link, class: "form-label" %>
@@ -75,3 +78,17 @@
     <%= form.submit class: "form-submit" %>
   </div>
 <% end %>
+
+<!-- Include Slim Select JavaScript and Initialization -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.css">
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Initialize Slim Select for Genres
+    new SlimSelect({
+      select: '#genre_select', // Make sure this matches the ID used for the genre select
+      closeOnSelect: false // Allows multiple selection
+    });
+  });
+</script>

@@ -16,7 +16,20 @@
     <h1 class="band-name"><%= band.band_name %></h1>
 
     <!-- Band Genre -->
-    <p><strong>Genre:</strong> <%= band.genre %></p>
+  <p><strong>Genres:</strong>    
+  <% if band.genres.any? %>
+    <span style="font-size: 14px; color: black;">
+      <% band.genres.each_with_index do |genre, index| %>
+        <%= genre.name %>
+        <% if index < band.genres.length - 1 %>, <% end %> <!-- Add a comma between genres except the last one -->
+      <% end %>
+    </span>
+  <% else %>
+    <span style="font-size: 14px; color: black;">None</span>
+  <% end %>
+  </p>
+
+
 
     <!-- Band Description -->
     <p><strong>Description:</strong> <%= band.band_description %></p>
@@ -29,6 +42,7 @@
     <p><strong>Email:</strong> <%= band.band_email %></p>
     <p><strong>Location:</strong> <%= band.band_location %></p>
   </div>
+
 
   <!-- Edit Link for Band (Only visible if the user is logged in) -->
   <% if user_l_signed_in? %>

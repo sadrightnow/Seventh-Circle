@@ -17,8 +17,12 @@
 
 
   <p style="text-align: center; font-size: 10px; color: grey;">
-    <%= post.genre %>
+    <% post.genres.each do |genre| %>
+      <%= genre.name %>
+      <% if genre != post.genres.last %>, <% end %> <!-- Add a comma between genres except the last one -->
+    <% end %>
   </p>
+
 
 
   <p style="text-align: center; font-size: 10px; color: grey;">

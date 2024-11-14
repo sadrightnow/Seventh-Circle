@@ -41,14 +41,11 @@
     <%= form.text_field :suggested_donation, class: "form-input" %>
   </div>
 
-
-<!-- Genres Multi-Select Field with Slim Select -->
-<div class="form-group">
-  <%= form.label :genres, "Genres", class: "form-label" %>
-  <%= form.select :genre_ids, options_for_select(@genres.collect { |genre| [genre.name, genre.id] }, selected: @post.genre_ids), { multiple: true }, { class: "form-select", id: "genre_select" } %>
-</div>
-
-
+  <!-- Genres Multi-Select Field with Slim Select -->
+  <div class="form-group">
+    <%= form.label :genres, "Genres", class: "form-label" %>
+    <%= form.select :genre_ids, options_for_select(@genres.collect { |genre| [genre.name, genre.id] }, selected: @post.genre_ids), { multiple: true }, { class: "form-select", id: "genre_select" } %>
+  </div>
 
   <!-- Bands Multi-Select Field with Slim Select -->
   <div class="form-group">
@@ -72,6 +69,7 @@
   <div class="form-group">
     <%= form.submit "Submit", class: "form-submit" %>
   </div>
+
 <% end %>
 
 <!-- Include Slim Select JavaScript and Initialization -->
@@ -86,11 +84,10 @@
       closeOnSelect: false // Allows multiple selection
     });
 
-    // If you also want Slim Select for the genre field:
+    // Initialize Slim Select for Genres
     new SlimSelect({
-      select: '#selectElement',
+      select: '#genre_select', // Ensure this matches the ID of the genre select element
       closeOnSelect: false // Allows multiple selection
     });
   });
 </script>
-x

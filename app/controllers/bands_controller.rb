@@ -9,6 +9,8 @@ class BandsController < ApplicationController
   end
 
   def show
+    @genres = Genre.all
+
     @band = Band.find_by(id: params[:id])
     if @band.nil?
       redirect_to bands_path, alert: "Band not found."
@@ -24,15 +26,16 @@ class BandsController < ApplicationController
 
   # GET /bands/1/edit
   def edit
-    @band = Band.find(params[:id])
     @genres = Genre.all
+    @band = Band.find(params[:id])
+   
   end
 
   # POST /bands or /bands.json
   def create
-    @band = Band.new(band_params)
     @genres = Genre.all
-
+    @band = Band.new(band_params)
+  
 
     respond_to do |format|
       if @band.save
@@ -78,5 +81,6 @@ class BandsController < ApplicationController
 
 
     def band_params
-    params.require(:band).permit(:band_name, :genre_id, :band_description, :band_bandcamp_link, :band_instagram_link, :band_email, :band_location, :band_ffo, :profile_picture)    end
+      params.require(:band).permit(:band_name, :band_description, :band_bandcamp_link, :band_instagram_link, :band_email, :band_location, :band_ffo, :profile_picture, genre_ids: [])
+    end
 end

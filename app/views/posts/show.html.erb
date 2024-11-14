@@ -32,10 +32,17 @@
     <% end %>
   </div>
 
-  <!-- Genre -->
-  <div class="event-details">
-    <p><strong>Genre:</strong> <%= @post.genre %></p>
-  </div>
+
+<p style="text-align: center; font-size: 10px; color: grey;">
+  <% if @post.genres.any? %>
+    <% @post.genres.each do |genre| %>
+      <%= genre.name %>
+      <% if genre != @post.genres.last %>, <% end %> <!-- Add a comma between genres except the last one -->
+    <% end %>
+  <% else %>
+    <em>No genres available for this event.</em> <!-- Message when no genres are associated -->
+  <% end %>
+</p>
 
   <!-- Bands -->
   <div class="event-bands">

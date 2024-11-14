@@ -15,8 +15,13 @@
     <!-- Band Name -->
     <h1 class="band-name"><%= band.band_name %></h1>
 
-    <!-- Band Genre -->
-    <p><strong>Genre:</strong> <%= band.genre %></p>
+    <p><strong>Genres:</strong>    
+      <% band.genres.each do |genre| %>
+        <%= genre.name %>
+        <% if genre != band.genres.last %>, <% end %> <!-- Add a comma between genres except the last one -->
+      <% end %>
+    </p>
+
 
     <!-- Band Description -->
     <p><strong>Description:</strong> <%= band.band_description %></p>

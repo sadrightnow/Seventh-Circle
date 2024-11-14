@@ -3,9 +3,9 @@ class Post < ApplicationRecord
   validates :event_date, presence: true
   has_many_attached :image
   has_many_attached :show_poster
-  has_and_belongs_to_many :bands
   has_and_belongs_to_many :genres
+  has_and_belongs_to_many :bands
 
-  def genre
-  end
+  #def genre
+  #end
 end
