@@ -3,4 +3,5 @@ class Band < ApplicationRecord
   has_and_belongs_to_many :posts
   has_many :shows # Assuming shows are associated with bands
   has_and_belongs_to_many :genres
+  validates :band_name, presence: true
 end

@@ -22,9 +22,6 @@
     <%= form.select :genre_ids, options_for_select(@genres.collect { |genre| [genre.name, genre.id] }, selected: @band.genre_ids), { multiple: true }, { class: "form-select", id: "genre_select" } %>
   </div>
 
-  
-
-
   <!-- Bandcamp Link -->
   <div class="form-group">
     <%= form.label :band_bandcamp_link, class: "form-label" %>
