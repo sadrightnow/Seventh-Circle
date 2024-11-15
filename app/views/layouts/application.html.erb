@@ -7,6 +7,7 @@
     <%= stylesheet_link_tag 'post_form', media: 'all' %>
     <%= stylesheet_link_tag 'background', media: 'all' %>
     <%= stylesheet_link_tag 'bands', media: 'all' %>
+
     
 
 
@@ -19,10 +20,10 @@
     <%= csp_meta_tag %>
     <%= render "layouts/navbar" %>
     <%= yield :head %>
-
+    
+    <%= favicon_link_tag '7C Mammoth Vector.png' %>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.js"></script>
-
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
