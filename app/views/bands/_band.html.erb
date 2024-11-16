@@ -22,7 +22,7 @@
     <span style="font-size: 14px; color: black;">
       <% band.genres.each_with_index do |genre, index| %>
         <%= genre.name %>
-        <% if index < band.genres.length - 1 %>, <% end %> <!-- Add a comma between genres except the last one -->
+        <% if index < band.genres.length - 1 %>/ <% end %> <!-- Add a comma between genres except the last one -->
       <% end %>
     </span>
   <% else %>

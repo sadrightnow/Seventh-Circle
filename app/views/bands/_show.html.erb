@@ -19,7 +19,7 @@
     <p><strong>Genres:</strong>    
       <% band.genres.each do |genre| %>
         <%= genre.name %>
-        <% if genre != band.genres.last %>, <% end %> <!-- Add a comma between genres except the last one -->
+        <% if genre != band.genres.last %>/ <% end %> <!-- Add a comma between genres except the last one -->
       <% end %>
     </p>
 
