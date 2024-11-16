@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for seventhcircle-wild-sun-2263 on 2024-11-11T15:27:45-07:00
+# fly.toml app configuration file generated for seventhcircle on 2024-11-15T13:23:23-07:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'seventhcircle-wild-sun-2263'
+app = 'seventhcircle'
 primary_region = 'den'
 console_command = '/rails/bin/rails console'
 
@@ -36,6 +36,3 @@ console_command = '/rails/bin/rails console'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
-
-[env]
-PORT = "3000"
