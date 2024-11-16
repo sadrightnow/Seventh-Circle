@@ -1,30 +1,82 @@
-.posts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
-
-/* Restrict to a maximum of 3 columns on larger screens */
-@media (min-width: 900px) {
-  .posts-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
+/* Post Container Styling */
 .post-container {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 15px;
-  padding: 0;
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center; /* Ensure everything inside is centered */
   overflow: hidden;
+  margin: 10px; /* Margin for spacing between posts */
+  padding: 20px; /* Added padding for overall container */
+  text-align: center; /* Ensure text inside is centered */
 }
 
+/* Event name wrapper to add specific margin inside the container */
+.event-name-wrapper {
+  margin-bottom: 15px; /* Bottom margin for spacing */
+}
 
+/* Event name styling */
+.event-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0; /* Ensure no additional margin here */
+}
+
+/* Genres styling */
+.event-genres {
+  font-size: 12px;
+  color: grey;
+  margin-bottom: 15px; /* Added bottom margin for spacing */
+}
+
+/* Event time styling */
+.event-time {
+  font-size: 12px;
+  color: grey;
+  margin-bottom: 15px; /* Added bottom margin for spacing */
+}
+
+/* Suggested donation styling */
+.event-donation {
+  font-size: 12px;
+  color: grey;
+  margin-bottom: 15px; /* Added bottom margin for spacing */
+}
+
+/* Visibility info styling */
+.event-visibility {
+  color: red;
+  font-size: 12px;
+  margin-top: 15px;
+}
+
+/* Date Overlay Styling */
+.date-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px; /* Added margin for spacing */
+}
+
+.date-overlay .day {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.date-overlay .date {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.date-overlay .month {
+  font-size: 50px;
+  color: grey;
+}
+
+/* Image Container */
 .post-image-container {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -33,8 +85,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  border-radius: 15px; /* Match the container's border radius */
 }
 
 .post-image {
@@ -49,7 +100,7 @@
   transform: scale(1.025); /* Slight zoom */
 }
 
-
+/* Link Overlay */
 .post-link {
   position: absolute;
   width: 100%;
@@ -62,7 +113,6 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-/* Only affects the overlay opacity */
 .post-container:hover .post-link {
   opacity: 0.5;
 }
@@ -77,7 +127,6 @@
   width: 100%;
   height: 100%;
 }
-
 
 
 
