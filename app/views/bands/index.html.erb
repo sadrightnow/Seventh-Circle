@@ -22,7 +22,21 @@
         <td>
           <%= link_to band.band_name, band_path(band) %> <!-- Make the band name a link -->
         </td>
-        <td><%= band.genre %></td>
+
+        <td>
+          <% if band.genres.any? %>
+            <span style="font-size: 14px; color: black;">
+              <% band.genres.each_with_index do |genre, index| %>
+                <%= genre.name %>
+                <% if index < band.genres.length - 1 %>/ <% end %> <!-- Add a comma between genres except the last one -->
+              <% end %>
+            </span>
+          <% else %>
+            <span style="font-size: 14px; color: black;">None</span>
+          <% end %>
+          </p>
+        </td>
+
         <td><%= band.band_location %></td>
         <td><%= band.band_email %></td>
         <td>
