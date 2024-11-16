@@ -1,62 +1,57 @@
 <div id="<%= dom_id post %>" class="post-container">
 
-  <!-- Image Container -->
   <div class="post-image-container">
-    <% if post.image.attached? %>
-      <% post.image.each do |image| %>
-        <%= image_tag(image, class: "post-image") %>
-      <% end %>
-    <% else %>
-      <div class="placeholder">No Image Available</div>
+  <% if post.image.attached? %>
+    <% post.image.each do |image| %>
+      <%= image_tag(image, class: "post-image") %>
     <% end %>
-  </div>
-
-  <!-- Content Wrapper for Titles and Text -->
-  <div class="post-content">
-    <!-- Event Name with Margin -->
-    <div class="event-name-wrapper">
-      <p class="event-name">
-        <strong><%= post.event_name %></strong>
-      </p>
-    </div>
-
-    <!-- Genres -->
-    <p class="event-genres">
-      <% post.genres.each do |genre| %>
-        <%= genre.name %>
-        <% if genre != post.genres.last %>, <% end %>
-      <% end %>
-    </p>
-
-    <!-- Event Time -->
-    <p class="event-time">
-      <%= Time.parse(post.time).strftime('%l:%M %p').strip %>
-    </p>
-
-    <!-- Date Overlay -->
-    <div class="date-overlay">
-      <span class="day"><%= Date.parse(post.event_date).strftime('%a') %></span>
-      <span class="date"><%= Date.parse(post.event_date).strftime('%d') %></span>
-      <span class="month"><%= Date.parse(post.event_date).strftime('%b') %></span>
-    </div>
-
-    <!-- Suggested Donation and Membership Info -->
-    <p class="event-donation">
-      <strong>Suggested donation:</strong> <%= post.suggested_donation %>
-      <% if post.membership_required == "1" %>
-        + ($5 annual membership)
-      <% end %>
-    </p>
-
-    <!-- Event Visibility -->
-    <% if post.visibility == false %>
-      <p class="event-visibility">
-        <span>Event is not public</span>
-      </p>
-    <% end %>
-
-    <!-- Link Overlay -->
-    <%= link_to "", post, class: "post-link" %>
-  </div>
+  <% else %>
+    <div class="placeholder">No Image Available</div>
+  <% end %>
 </div>
 
+  <p>
+  <p style="text-align: center; font-size: 20px;">
+    <strong><%= post.event_name %></strong>
+  </p>
+
+
+  <p style="text-align: center; font-size: 10px; color: grey;">
+    <% post.genres.each do |genre| %>
+      <%= genre.name %>
+      <% if genre != post.genres.last %>, <% end %> <!-- Add a comma between genres except the last one -->
+    <% end %>
+  </p>
+
+
+
+  <p style="text-align: center; font-size: 10px; color: grey;">
+     <%= Time.parse(post.time).strftime('%l:%M %p').strip %>
+  </p>
+
+  <div class="date-overlay">
+    <span class="day"><%= Date.parse(post.event_date).strftime('%a') %></span>
+    <span class="date"><%= Date.parse(post.event_date).strftime('%d') %></span>
+    <span class="month"><%= Date.parse(post.event_date).strftime('%b') %></span>
+  </div>
+
+  <p style="text-align: center; font-size: 10px; color: grey;">
+    <strong>Suggested donation:</strong> <%= post.suggested_donation %>
+    <% if post.membership_required == "1" %>
+       + ($5 annual membership)
+  <% end %>
+  </p>
+
+
+
+
+  <p>
+    <%= link_to "", post,  class:"post-link" %>
+
+
+    <% if post.visibility == false %>
+      <span style="color: red; font-size: 10px;">Event is not public</span>
+    <% end %>
+  </p>
+
+</div>
