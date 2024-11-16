@@ -15,13 +15,15 @@
       <%= Date.parse(@post.event_date).strftime('%B %d, %Y') %> @ 
       <%= Time.parse(@post.time).strftime('%l:%M %p').strip %>
     </p>
-    <p class="event-cost">
+  </div>
+  <div class="event-meta">
+      <p class="event-cost">
       <%= @post.suggested_donation %>
     </p>
     <% if @post.membership_required == "1" %>
       <p class="membership-required">($5 annual membership required)</p>
     <% end %>
-  </div>
+    </div>
 
   <!-- Poster -->
   <div class="poster-container">
