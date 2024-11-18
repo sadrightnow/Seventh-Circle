@@ -1,0 +1,20 @@
+<% @past_posts.each do |post| %>
+  <div id="<%= dom_id post %>" class="post-container">
+
+    <p style="text-align: center; font-size: 20px;">
+      <strong><%= post.event_name %></strong>
+    </p>
+
+    <div class="">
+      <span class="date"><%= Date.parse(post.event_date).strftime('%B %d, %Y') %></span>
+    </div>
+
+    <p style="text-align: center; font-size: 10px; color: grey;">
+      <% post.genres.each do |genre| %>
+        <%= genre.name %>
+        <% if genre != post.genres.last %>, <% end %>
+      <% end %>
+    </p>
+
+  </div>
+<% end %>

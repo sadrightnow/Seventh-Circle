@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   before_action :set_genres_and_bands, only: [:new, :edit, :create]
-  before_action :authenticate_user_l!, except: [:index, :show]
+  before_action :authenticate_user_l!, except: [:index, :show, :past_events]
 
   # GET /posts or /posts.json
   def index
@@ -18,14 +18,12 @@ class PostsController < ApplicationController
   def show
     @genres = Genre.all
     @bands = @post.bands
-    
   end
 
   # GET /posts/new
   def new
     @genres = Genre.all
     @post = Post.new
-
   end
 
   # GET /posts/1/edit
@@ -68,6 +66,20 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # GET /posts/past
+  def past_events
+    # Fetch only the posts with past event dates
+    @past_posts = Post.where('event_date < ?', Date.today).order(event_date: :desc)
+  end
+
+    def remove_past_show_attachments
+    Post.where('event_date < ?', Date.today).find_each do |post|
+      post.image.purge if post.image.attached?
+      post.show_poster.purge if post.show_poster.attached?
+    end
+  end
+
 
   private
 
