@@ -1,29 +1,30 @@
 Rails.application.routes.draw do
-  resources :bands
-
+  # Devise Routes
+  devise_for :user_ls
   devise_scope :user_l do
-    get "/user_ls", to: "devise/registration#new"
+    get "/user_ls", to: "devise/registrations#new"
     get "/user_ls/password", to: "devise/passwords#new"
-    get "/user_ls/sign_out" => "devise/sessions#destroy"
+    get "/user_ls/sign_out", to: "devise/sessions#destroy"
   end
 
-  devise_for :user_ls
+  get 'posts/past', to: 'posts#past_events', as: :past_posts
 
-  get "home/about"
+  # Resource Routes
+  resources :bands # Allowing full RESTful routes for bands
   resources :posts
+
+  # Static Pages
+  get "home/about"
   get "home/contact"
-  resources :bands, only: [ :show, :edit, :update ]
+  get "home/contribute"
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Health Check Route
+  get "up", to: "rails/health#show", as: :rails_health_check
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  # PWA Routes
+  get "service-worker", to: "rails/pwa#service_worker", as: :pwa_service_worker
+  get "manifest", to: "rails/pwa#manifest", as: :pwa_manifest
 
-  # Render dynamic PWA files from app/views/pwa/*
-  get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-  get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-
-   # Defines the root path route ("/")
-   root "posts#index"
+  # Root Route
+  root "posts#index"
 end
