@@ -66,4 +66,4 @@ gem "dockerfile-rails", ">= 1.6", group: :development
 # Use PostgreSQL as the database for production
 gem "pg", "~> 1.5", group: :production
 
-gem "aws-sdk-s3", "~> 1.170", require: false
+gem "aws-sdk-s3", "~> 1.177", require: false
